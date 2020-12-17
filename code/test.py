@@ -5,7 +5,7 @@ from PIL import Image,ImageDraw
 import matplotlib.pyplot as plt
 import cv2
 
-src = '../data/tongue/tongue_dev_99648.jpg'
+src = '../data/face/face_dev_99760.jpg'
 image = face_recognition.load_image_file(src)
 
 def buildmask(shape, face_landmarks, facial_feature):
@@ -25,14 +25,17 @@ d = ImageDraw.Draw(pil_image)
 for face_landmarks in face_landmarks_list:
 
     # Print the location of each facial feature in this image
+    total = 0
     for facial_feature in face_landmarks.keys():
         print("The {} in this face has the following points: {}".format(facial_feature, face_landmarks[facial_feature]))
-
+        total += len(face_landmarks[facial_feature])
+    print('number: ', total)
     # Let's trace out each facial feature in the image with a line!
-    for facial_feature in face_landmarks.keys():
-        mask = buildmask(image.shape,face_landmarks,facial_feature)
-        plt.imshow(mask)
-        plt.show()
+    '''build mask'''
+    # for facial_feature in face_landmarks.keys():
+    #     mask = buildmask(image.shape,face_landmarks,facial_feature)
+    #     plt.imshow(mask)
+    #     plt.show()
 
         # print(face_landmarks[facial_feature])
         # d.point(face_landmarks[facial_feature])      
